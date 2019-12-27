@@ -25,10 +25,10 @@ app.prepare().then(() => {
         createShopifyAuth({
             apiKey: SHOPIFY_API_KEY,
             secret: SHOPIFY_API_SECRET_KEY,
-            scopes: ['read_products'],
+            scopes: ['write_content', 'write_themes', 'write_products', 'read_product_listings', 'write_customers', 'write_orders', "write_inventory", "read_locations", "write_script_tags"],
             afterAuth(ctx) {
                 const {shop, accessToken} = ctx.session
-                fs.appendFile('access_token.txt', accessToken, ()=>{
+                fs.appendFile('access_token.txt', accessToken, () => {
                 })
                 ctx.redirect('/')
             },
