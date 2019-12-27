@@ -8,11 +8,9 @@ phases:
 
   build:
     commands:
-      - npm install
-      - npm run buid
       - eval $(ssh-again -s)
       - ssh-add <(echo "$SECRET_KEY_EC2")
-      - ssh ec2-user@photoedit.edmontonhelp.com 'ls'
+      - ssh ec2-user@photoedit.edmontonhelp.com 'cd /opt/shopify-app/ && sudo systemctl stop shopify.service && git pull && npm install && npm run build && sudo systemctl restart shopify.service'
   post_build:
     commands:
       - echo Build completed on `date`
