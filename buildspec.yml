@@ -9,4 +9,6 @@ phases:
   build:
     commands:
       - openssl enc -d -md md5 -aes-256-cbc -salt -in ec2.pem.enc -out mykeypair.pem -pass pass:$APP_SECRET
+      - stat mykeypair.pem
+      - chmod 400 mykeypair.pem
       - ssh -i "mykeypair.pem" ec2-user@ec2-18-224-24-128.us-east-2.compute.amazonaws.com 'cd /opt/shopify-app/ && sudo systemctl stop shopify.service && git pull && npm install && npm run build && sudo systemctl restart shopify.service'
