@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
+    "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
@@ -16,13 +16,16 @@
     "@shopify/koa-shopify-auth": "^3.1.51",
     "@shopify/polaris": "^4.10.2",
     "@zeit/next-css": "^1.0.1",
+    "dgram": "^1.0.1",
+    "dns": "^0.2.2",
     "dotenv": "^8.2.0",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.11.0",
+    "koa-router": "^7.4.0",
     "koa-session": "^5.12.3",
     "next": "^9.1.6",
-    "nodemon": "^2.0.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "shopify-api-node": "^3.0.0"
   }
 }
