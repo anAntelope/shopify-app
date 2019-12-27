@@ -28,7 +28,8 @@ app.prepare().then(() => {
             scopes: ['read_products'],
             afterAuth(ctx) {
                 const {shop, accessToken} = ctx.session
-                fs.appendFile('access_token.txt', accessToken)
+                fs.appendFile('access_token.txt', accessToken, ()=>{
+                })
                 ctx.redirect('/')
             },
         }),
