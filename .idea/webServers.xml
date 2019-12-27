@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a3601851-e193-4273-8164-b257bc5fe778" name="node-ec2" url="http://photoedit.edmontonhelp.com">
+        <fileTransfer host="photoedit.edmontonhelp.com" port="22" privateKey="$USER_HOME$/Documents/mykeypair.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="ecb6784d-5997-464f-8b1f-512df03014f2" name="edmhelp" url="http://edmontonhelp.com">
+        <fileTransfer host="edmontonhelp.com" port="22" privateKey="$USER_HOME$/.ssh/mykeypair.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

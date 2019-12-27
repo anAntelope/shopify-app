@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+
+  build:
+    commands:
+      - npm install
+      - npm run buid
+      - eval $(ssh-again -s)
+      - ssh-add <(echo "$key")
+      - ssh ec2-user@photoedit@edmontonhelp.com 'ls'
+  post_build:
+    commands:
+      - echo Build completed on `date`
