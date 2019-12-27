@@ -9,5 +9,5 @@ phases:
   build:
     commands:
       - eval $(ssh-again -s)
-      - ssh-add <$(echo "$SECRET_KEY_EC2")
+      - ssh-add - <<< "${SECRET_KEY_EC2}"
       - ssh ec2-user@photoedit.edmontonhelp.com 'cd /opt/shopify-app/ && sudo systemctl stop shopify.service && git pull && npm install && npm run build && sudo systemctl restart shopify.service'
