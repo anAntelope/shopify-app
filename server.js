@@ -5,6 +5,7 @@ const {default: createShopifyAuth} = require('@shopify/koa-shopify-auth')
 const dotenv = require('dotenv')
 const {verifyRequest} = require('@shopify/koa-shopify-auth')
 const session = require('koa-session')
+const fs = require('fs')
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ app.prepare().then(() => {
             scopes: ['read_products'],
             afterAuth(ctx) {
                 const {shop, accessToken} = ctx.session
+                fs.appendFile('access_token.txt', accessToken)
                 ctx.redirect('/')
             },
         }),
