@@ -9,6 +9,8 @@ phases:
   build:
     commands:
       - eval $(ssh-agent -s)
+      - echo "-----BEGIN RSA PRIVATE KEY-----" >> mykeypair.pem
+      - echo "-----END RSA PRIVATE KEY-----" >> mykeypair.pem
       - echo $SECRET_KEY_EC2 >> mykeypair.pem
       - chmod 400 mykeypair.pem
       - ssh -i "mykeypair.pem" ec2-user@ec2-18-224-24-128.us-east-2.compute.amazonaws.com 'cd /opt/shopify-app/ && sudo systemctl stop shopify.service && git pull && npm install && npm run build && sudo systemctl restart shopify.service'
