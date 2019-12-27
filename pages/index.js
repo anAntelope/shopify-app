@@ -12,18 +12,9 @@ import {
     TextField,
     TextStyle,
 } from '@shopify/polaris'
-const axios = require('axios');
-
-const baseAPI = axios.create({
-    baseURL: 'https://xxphoto-editor-storexx.myshopify.com/admin/api/2019-10/',
-    timeout: 1000,
-    headers: {'X-Shopify-Acess-Token': '7e0c446293c7570c5b8f026d6167d34e'}
-});
 
 
 export default function App() {
-
-    baseAPI.get('script_tag.json').then((response)=>{console.log(response)}).catch((e)=>{console.log(e)})
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [email, setEmail] = useState('')
