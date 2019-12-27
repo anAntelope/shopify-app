@@ -12,20 +12,23 @@ import {
     TextField,
     TextStyle,
 } from '@shopify/polaris'
+const axios = require('axios');
 
-function getScriptTagCount(){
-    fetch("/api/hello", { method: "GET"})
-        .then(response => console.log(response))
-}
+const baseAPI = axios.create({
+    baseURL: 'https://xxphoto-editor-storexx.myshopify.com/admin/api/2019-10/',
+    timeout: 1000,
+    headers: {'X-Shopify-Acess-Token': '7e0c446293c7570c5b8f026d6167d34e'}
+});
+
 
 export default function App() {
-    getScriptTagCount()
+
+    baseAPI.get('script_tag.json').then((response)=>{console.log(response)}).catch((e)=>{console.log(e)})
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [email, setEmail] = useState('')
     const [checkboxes, setCheckboxes] = useState([0, 1, 2])
     const [allowed, setAllowed] = useState(false)
-    // const isIt = doesScriptTagExist()
     const handleFirstChange = useCallback((value) => setFirst(value), [])
     const handleLastChange = useCallback((value) => setLast(value), [])
     const handleEmailChange = useCallback((value) => setEmail(value), [])

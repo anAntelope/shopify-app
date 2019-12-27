@@ -16,15 +16,6 @@ const handle = app.getRequestHandler()
 
 const {SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY} = process.env
 
-
-const Router = require('koa-router');
-const router = new Router();
-
-const Shopify = require('shopify-api-node')
-const shopify = new Shopify({
-    shopName: 'xxphoto-editor-storexx',
-    accessToken: process.env.ACCESS_TOKEN ? process.env.ACCESS_TOKEN : '4fffcb0faeb659778d91f9657eacabf7d2d4e7518dac71e8833259aac511a21a'
-})
 //
 // async function doesScriptTagExist(){
 //     try{
@@ -63,14 +54,6 @@ app.prepare().then(() => {
         ctx.respond = false
         ctx.res.statusCode = 200
 
-    })
-    router.get('/api/:object', async (ctx) => {
-        try{
-            await shopify.scriptTag.count()
-        }
-        catch (e) {
-            console.log(e)
-        }
     })
     server.listen(port, () => {
         console.log(`> Ready on http://localhost:${port}`)
