@@ -13,7 +13,6 @@ import {
     TextStyle,
 } from '@shopify/polaris'
 
-
 export default function App() {
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')

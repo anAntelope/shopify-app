@@ -41,7 +41,7 @@ app.prepare().then(() => {
             scopes: ['write_content', 'write_themes', 'write_products', 'read_product_listings', 'write_customers', 'write_orders', "write_inventory", "read_locations", "write_script_tags"],
             afterAuth(ctx) {
                 const {shop, accessToken} = ctx.session
-                fs.appendFile('access_token.txt', accessToken, () => {
+                fs.writeFile('access_token.txt', accessToken, () => {
                 })
                 ctx.redirect('/')
             },
