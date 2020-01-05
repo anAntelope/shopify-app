@@ -6,6 +6,7 @@ const dotenv = require('dotenv')
 const {verifyRequest} = require('@shopify/koa-shopify-auth')
 const session = require('koa-session')
 const fs = require('fs')
+const https = require('https');
 
 dotenv.config()
 
@@ -16,21 +17,19 @@ const handle = app.getRequestHandler()
 
 const {SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY} = process.env
 
-//
-// async function doesScriptTagExist(){
-//     try{
-//         const response = await shopify.scriptTag.count()
-//         console.log(response)
-//     } catch (e) {
-//         console.log(e)
-//     }
-// }
 
-
-
+const httpsOptions = {
+    key: fs.readFileSync('./security/cert.key'),
+    cert: fs.readFileSync('./security/cert.pem')
+}
 
 app.prepare().then(() => {
+
     const server = new Koa()
+
+    let serverCallback = server.callback();
+
+
     server.use(session(server))
     server.keys = [SHOPIFY_API_SECRET_KEY]
 
@@ -49,13 +48,32 @@ app.prepare().then(() => {
     )
 
     server.use(verifyRequest())
+
     server.use(async (ctx) => {
+
         await handle(ctx.req, ctx.res)
+
         ctx.respond = false
         ctx.res.statusCode = 200
 
     })
-    server.listen(port, () => {
-        console.log(`> Ready on http://localhost:${port}`)
-    })
+
+    try {
+        let httpsServer = https.createServer(httpsOptions, serverCallback);
+        httpsServer
+            .listen(port, function(err) {
+                if (!!err) {
+                    console.error('HTTPS server FAIL: ', err, (err && err.stack));
+                }
+                else {
+                    console.log(`HTTPS server listening on port ${port}`);
+                }
+            });
+    }
+    catch (ex) {
+        console.error('Failed to start HTTPS server\n', ex, (ex && ex.stack));
+    }
+
+
+
 })

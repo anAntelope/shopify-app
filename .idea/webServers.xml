@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="a3601851-e193-4273-8164-b257bc5fe778" name="node-ec2" url="http://ec2-3-17-14-248.us-east-2.compute.amazonaws.com">
-        <fileTransfer host="ec2-3-17-14-248.us-east-2.compute.amazonaws.com" port="22" privateKey="C:\Users\Matt\.ssh\mykeypair.pem" accessType="SFTP" keyPair="true">
+        <fileTransfer host="ec2-3-17-14-248.us-east-2.compute.amazonaws.com" port="22" privateKey="C:\Users\szhao\.ssh\mykeypair.pem" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

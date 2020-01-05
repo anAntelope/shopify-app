@@ -2,3 +2,6 @@
 node_modules
 .next
 *.pem
+/pages/api/test.js
+credentials.json
+token.json

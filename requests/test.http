@@ -1,0 +1,8 @@
+### Send POST request with body as parameters
+POST https://localhost:3000/api/new
+Content-Type: application/x-www-form-urlencoded
+
+garbage=garbage
+
+###
+
