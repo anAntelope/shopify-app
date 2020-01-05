@@ -17,10 +17,13 @@ const handle = app.getRequestHandler()
 
 const {SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY} = process.env
 
+let httpsOptions = {}
 
-const httpsOptions = {
-    key: fs.readFileSync('./security/cert.key'),
-    cert: fs.readFileSync('./security/cert.pem')
+if (process.env.NODE_ENV !== 'production'){
+    httpsOptions = {
+        key: fs.readFileSync('./security/cert.key'),
+        cert: fs.readFileSync('./security/cert.pem')
+    }
 }
 
 app.prepare().then(() => {

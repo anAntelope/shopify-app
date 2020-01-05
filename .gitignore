@@ -1,7 +1,8 @@
 .env
 node_modules
 .next
-*.pem
+/security
 /pages/api/test.js
 credentials.json
 token.json
+access_token.txt
